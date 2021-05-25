@@ -1,6 +1,6 @@
 package com.sz.algalog.api.exceptionhandler;
 
-import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -32,7 +32,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 
 		Problema problema = new Problema();
 		problema.setStatus(status.value());
-		problema.setDataHora(LocalDateTime.now());
+		problema.setDataHora(OffsetDateTime.now());
 		problema.setTitulo("Um ou mais campos são inválidos. Favor corrigí-los e enviar novamente.");
 			
 		List<Problema.Campo> campos = ex.getBindingResult().getAllErrors().stream()
@@ -51,7 +51,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 		
 		Problema problema = new Problema();
 		problema.setStatus(status.value());
-		problema.setDataHora(LocalDateTime.now());
+		problema.setDataHora(OffsetDateTime.now());
 		problema.setTitulo(ex.getMessage());
 			
 		return handleExceptionInternal(ex, problema, new HttpHeaders(), status, request);
